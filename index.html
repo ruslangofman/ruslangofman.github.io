@@ -22,7 +22,7 @@
             font-size: 16px;
             text-decoration: none;
             color: white;
-            background-color: #0077b5; /* Default LinkedIn color */
+            background-color: #0077b5;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -31,30 +31,66 @@
         .button:hover {
             background-color: #005983;
         }
-        .resume-button {
-            background-color: #28a745; /* Green color */
+        .hidden {
+            display: none;
         }
-        .resume-button:hover {
+        .password-container {
+            margin-top: 20px;
+        }
+        .password-container input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .password-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .password-container button:hover {
             background-color: #1e7e34;
-        }
-        .email-button {
-            background-color: #6c757d; /* Gray color */
-        }
-        .email-button:hover {
-            background-color: #565e64;
         }
     </style>
 </head>
 <body>
     <h1>Welcome to My Resume Website</h1>
-    <p>Feel free to connect with me, download my resume, or send me an email!</p>
+    <p>Feel free to connect with me or send me an email!</p>
     <div>
         <!-- LinkedIn Button -->
         <a href="https://www.linkedin.com/in/your-profile" target="_blank" class="button">My LinkedIn</a>
-        <!-- Resume Download Button -->
-        <a href="resume.pdf" download class="button resume-button">Download My Resume</a>
         <!-- Email Button -->
-        <a href="mailto:your.email@example.com" class="button email-button">Email Me</a>
+        <a href="mailto:your.email@example.com" class="button">Email Me</a>
     </div>
+    <div class="password-container">
+        <h2>Access My Resume</h2>
+        <input type="password" id="resumePassword" placeholder="Enter password">
+        <button onclick="checkPassword()">Submit</button>
+    </div>
+    <div id="downloadButton" class="hidden">
+        <a href="resume.pdf" download class="button">Download My Resume</a>
+    </div>
+
+    <script>
+        // Replace this with your chosen password
+        const correctPassword = "123";
+
+        function checkPassword() {
+            const enteredPassword = document.getElementById("resumePassword").value;
+            const downloadButton = document.getElementById("downloadButton");
+
+            if (enteredPassword === correctPassword) {
+                downloadButton.classList.remove("hidden");
+                alert("Password correct! You can now download the resume.");
+            } else {
+                alert("Incorrect password. Please try again.");
+            }
+        }
+    </script>
 </body>
 </html>
