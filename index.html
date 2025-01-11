@@ -34,28 +34,6 @@
         .hidden {
             display: none;
         }
-        .password-container {
-            margin-top: 20px;
-        }
-        .password-container input {
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-right: 10px;
-        }
-        .password-container button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .password-container button:hover {
-            background-color: #1e7e34;
-        }
     </style>
 </head>
 <body>
@@ -67,30 +45,28 @@
         <!-- Email Button -->
         <a href="mailto:your.email@example.com" class="button">Email Me</a>
     </div>
-    <div class="password-container">
-        <h2>Access My Resume</h2>
-        <input type="password" id="resumePassword" placeholder="Enter password">
-        <button onclick="checkPassword()">Submit</button>
-    </div>
-    <div id="downloadButton" class="hidden">
+    <div id="downloadSection" class="hidden">
+        <h2>Download My Resume</h2>
         <a href="resume.pdf" download class="button">Download My Resume</a>
     </div>
 
     <script>
         // Replace this with your chosen password
-        const correctPassword = "123";
+        const correctPassword = "clickedFromResume";
 
-        function checkPassword() {
-            const enteredPassword = document.getElementById("resumePassword").value;
-            const downloadButton = document.getElementById("downloadButton");
+        function checkPasswordInURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const password = urlParams.get("password");
 
-            if (enteredPassword === correctPassword) {
-                downloadButton.classList.remove("hidden");
-                alert("Password correct! You can now download the resume.");
+            if (password === correctPassword) {
+                document.getElementById("downloadSection").classList.remove("hidden");
             } else {
-                alert("Incorrect password. Please try again.");
+                console.warn("Invalid or missing password in URL.");
             }
         }
+
+        // Run the check when the page loads
+        checkPasswordInURL();
     </script>
 </body>
 </html>
